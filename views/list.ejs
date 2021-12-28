@@ -1,0 +1,34 @@
+<!<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>To Do List</title>
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <body>
+    <div class="box" id="heading">
+      <% if (kindOfDay=="Saturday" || kindOfDay=="Sunday") { %>
+          <h1 style="color: Blue"> <%=ExactDate %>. <br> It's <%=kindOfDay %> !</h1>
+      <%  } else { %>
+          <h1 style="color: Purple"> <%=ExactDate %>.<br> It's <%=kindOfDay %> !</h1>
+      <%  } %>
+    </div>
+
+    <div class="box">
+      <% for (var i=0; i<Newlistitem.length; i++) { %>
+        <div class="item">
+          <input type="checkbox">
+          <p><%= Newlistitem[i]%></p>
+        </div>
+      <%}%>
+
+      <form class="item" action="/" method="post">
+        <input type="text" name="NewItem" placeholder="New Item">
+        <button type="submit" name="button">+</button>
+      </form>
+
+    </div>
+
+
+  </body>
+</html>
