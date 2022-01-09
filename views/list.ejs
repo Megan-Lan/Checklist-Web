@@ -1,34 +1,29 @@
-<!<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>To Do List</title>
-    <link rel="stylesheet" href="css/styles.css">
-  </head>
-  <body>
+<%- include("header") -%>
+
     <div class="box" id="heading">
       <% if (kindOfDay=="Saturday" || kindOfDay=="Sunday") { %>
-          <h1 style="color: Blue"> <%=ExactDate %>. <br> It's <%=kindOfDay %> !</h1>
+          <h1 style="color: White"> <%=ExactDate %>. <br> It's <%=kindOfDay %> !</h1>
       <%  } else { %>
-          <h1 style="color: Purple"> <%=ExactDate %>.<br> It's <%=kindOfDay %> !</h1>
+          <h1 style="color: Black"> <%=ExactDate %>.<br> It's <%=kindOfDay %> !</h1>
       <%  } %>
     </div>
 
     <div class="box">
-      <% for (var i=0; i<Newlistitem.length; i++) { %>
-        <div class="item">
-          <input type="checkbox">
-          <p><%= Newlistitem[i]%></p>
-        </div>
+      <% for (var i=0; i<newListItems.length; i++) { %>
+        <form action="/delete" method="post">
+          <div class="item">
+            <input type="checkbox" name="checkbox"  value="<%=newListItems[i]._id%>" onChange="this.form.submit()">
+            <p><%=newListItems[i].name%></p>
+          </div>
+          <input type="hidden" name="listName" value="<%= listTitle %>"></input>
+        </form>
       <%}%>
 
       <form class="item" action="/" method="post">
-        <input type="text" name="NewItem" placeholder="New Item">
-        <button type="submit" name="button">+</button>
+        <input type="text" name="newItem" placeholder="New Item">
+        <button type="submit" name="list" value="<%= listTitle %>">+</button>
       </form>
 
     </div>
 
-
-  </body>
-</html>
+<%- include("footer") -%>
